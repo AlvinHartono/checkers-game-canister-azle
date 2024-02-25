@@ -1,0 +1,25 @@
+type Game = record {
+  id : text;
+  createdAt : nat64;
+  winner : opt text;
+  updatedAt : opt nat64;
+};
+type _AzleResult = variant { Ok : text; Err : text };
+type _AzleResult_1 = variant { Ok : vec Game; Err : text };
+type _AzleResult_2 = variant { Ok : Game; Err : text };
+type updatePos = record {
+  movePieceToCol : float64;
+  movePieceToRow : float64;
+  PieceCol : float64;
+  PieceRow : float64;
+};
+service : () -> {
+  blueTeam : (updatePos) -> (_AzleResult);
+  getGamesHistory : () -> (_AzleResult_1) query;
+  getMessage : (text) -> (_AzleResult_2) query;
+  howToPlay : () -> (_AzleResult) query;
+  redTeam : (updatePos) -> (_AzleResult);
+  reset : () -> (_AzleResult);
+  startCheckers : () -> (_AzleResult);
+  updateBoard : () -> (_AzleResult) query;
+}
